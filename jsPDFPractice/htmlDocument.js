@@ -9,32 +9,19 @@
 
 //     doc.save('CodeOutput.pdf');
 // }
-
 window.jsPDF = window.jspdf.jsPDF;
 
-function Convert_HTML_To_PDF() {
-    var doc = new jsPDF('l','mm','1200','1810');
-	
-    var elementHTML = document.getElementById("htmlContent").value;
+function saveHtmlToPDF() {
+    var doc = new jsPDF('p', 'mm', 'a4');
 
-    var htmlElement = "<div>"+elementHTML+"</div>";
-    // doc.fromHTML(htmlElement, {
-    //     callback: function(doc) {
-    //         doc.save('document-html.pdf');
-    //     },
-    //     margin: [10, 10, 10, 10],
-    //     x: 0,
-    //     y: 0,
-    //     width: 190, //target width in the PDF document
-    //     windowWidth: 675 //window width in CSS pixels
-    // });
+    var elementHTML = document.querySelector("#htmlContent");
 
-    doc.html(document.body, {
-        callback: function (doc) {
-            var iframe = document.createElement('iframe');
-            iframe.setAttribute('style', 'position:absolute;right:0; top:0; bottom:0; height:100%; width:500px');
-            document.body.appendChild(iframe);
-            iframe.src = doc.output('datauristring');
-        }
-    });
+    const htmlString = "<div>"+elementHTML.value+"</div>";
+    console.log(htmlString);
+    // doc.fromHTML(elementHTML,20,30);
+
+
+    // Convert the HTML string to PDF and add it to the document
+    doc.text(htmlString, 10, 10);
+    doc.save('document.pdf');
 }
