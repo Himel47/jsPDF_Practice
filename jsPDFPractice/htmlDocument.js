@@ -9,7 +9,8 @@
 
 //     doc.save('CodeOutput.pdf');
 // }
-window.jsPDF = window.jspdf.jsPDF;
+
+
 
 function saveHtmlToPDF() {
     var doc = new jsPDF('p', 'mm', 'a4');
@@ -22,6 +23,6 @@ function saveHtmlToPDF() {
 
 
     // Convert the HTML string to PDF and add it to the document
-    doc.text(htmlString, 10, 10);
-    doc.save('document.pdf');
+    doc.fromHTML(htmlString, 10, 10);
+    doc.save('Output.pdf');
 }
